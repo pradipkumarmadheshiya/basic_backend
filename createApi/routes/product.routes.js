@@ -1,18 +1,11 @@
 import express from "express"
-import { productModel } from "../models/product.model.js"
+import { addProduct, deleteProduct, getProducts, updateProduct } from "../controllers/product.controller.js"
 
 const router=express.Router()
 
-router.post("/", (req, res)=>{
-    const {title, description, price, category}=req.body || {}
-
-    if(!title || !description || !price || !category){
-        return res.status(400).json({message:"all fields are required"})
-    }
-
-    const product=productModel.create({title, description, price, category})
-
-    res.status(201).json({message:"Product added"}, product)
-})
+router.post("/", addProduct)
+router.get("/", getProducts)
+router.put("/update/:id", updateProduct)
+router.delete("/delete/:id", deleteProduct)
 
 export default router

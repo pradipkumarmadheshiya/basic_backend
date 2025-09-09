@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 export const connectDB=()=>{
-    mongoose.connect(process.env.MONGO_URI, {dbName:"PRODUCT_API"})
+    mongoose.connect(process.env.MONGO_URI)
     .then(()=>{
         console.log("Database connected Successfully.")
     })
