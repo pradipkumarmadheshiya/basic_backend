@@ -18,8 +18,25 @@ export const addProduct=async function(req, res){
     }
 }
 
+export const getSingleProduct=async function(req, res) {
+    const {id}=req.params
+
+    const product=await productModel.findById(id)
+
+    if(!product){
+        return res.status(404).json({message:"Product not found"})
+    }
+
+    res.status(200).json(product)
+}
+
 export const getProducts=async function(req, res) {
     const products=await productModel.find()
+
+    if(!products){
+        return res.status(404).json({message:"Products not found"})
+    }
+
     res.status(200).json(products)
 }
 
